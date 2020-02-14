@@ -61,13 +61,7 @@ Airflow是一個開源工作流管理平台(schedule workflow)，相較於其它
 DAG 說明有什麼工作、執行時間週期、工作之間的執行順序以及依賴關係。<br>
 DAG 最終目標將所有工作在對的時間依照上下游關係全部執行。
 
-```mermaid
-graph LR
-A(A)
-A --> B(B)
-B --> C(C)
-C -- X --> A
-```
+![](images/Unable.png)
 
 ## Task
 
