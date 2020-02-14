@@ -21,7 +21,7 @@ Airflow是一個開源工作流管理平台(schedule workflow)，相較於其它
 	5.start the web server, default port is 8080
     $ airflow webserver -p 8080
 
-![](images/airflow_webserver.png)
+![](images/webserver.png)
 
  - metadata db - sqlite
  - executor - SequentialExecutor
