@@ -140,23 +140,9 @@ C -- X --> A
     -**DAG_B需要等DAG_A完成後才可以執行**
 
 **A (DAG)**
-```mermaid 
-graph LR;
-    A(A);
-    A --> B(B);
-    B --> C(C);
-    C --> push_DONE;
-
-```
+![](images/A_DAG.png)
 **B (DAG)**
-```mermaid 
-graph LR
-check_DONE(check_DONE)
-check_DONE -- Done --> D(d)
-D --> E(E)
-E --> F(F)
-check_DONE -- None --> fail
-```
+![](images/B_DAG.png)
 
 ## SubDAG
 [SubDAGs]<br>
