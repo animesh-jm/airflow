@@ -1,6 +1,6 @@
 # Airflow
 
-Airflow是一個開源工作流管理平台(schedule workflow)，相較於其它ETL tools<br> (e.g. Nifi, datastage, informatica, SSIS)， airflow並不負責處理資料(data flow)，airflow利用DAG來代表工作流程(workflow)，提供Web畫面顯示有什麼工作、執行時間週期、工作之間的執行順序以及依賴關係。
+Airflow是一個開源工作流管理平台(schedule workflow)，相較於其它ETL tools(e.g. Nifi, datastage, informatica, SSIS)，airflow並不負責處理資料(data flow)，airflow利用DAG來代表工作流程(workflow)，提供Web UI顯示有什麼工作、執行時間週期、工作之間的執行順序以及依賴關係。
 
 
 ## Quick start
