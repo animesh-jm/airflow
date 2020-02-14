@@ -133,10 +133,10 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
 >   **利用xcom_pull實作類似sensor效果**<br>
     -**DAG_B需要等DAG_A完成後才可以執行**
 
-**A (DAG)**
-![](images/A_DAG.png)
-**B (DAG)**
-![](images/B_DAG.png)
+**A (DAG)**<br>
+![](images/A_DAG.png)<br>
+**B (DAG)**<br>
+![](images/B_DAG.png)<br>
 
 ## SubDAG
 [SubDAGs]<br>
