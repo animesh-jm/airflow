@@ -26,7 +26,6 @@ Airflow是一個開源工作流管理平台(schedule workflow)，相較於其它
  - metadata db - sqlite
  - executor - SequentialExecutor
 >   建議：executor換成**LocalExecutor**，metadata db換成**MySQL**或**Postgres**<br>
->   以下流程介紹如何換成Postgres
 
 >   1. 修改airflow.cfg中executor<br>
 
