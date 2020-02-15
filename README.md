@@ -133,17 +133,17 @@ https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 ## xcom_push、xcom_pull
 >   **DAG task之間value交換(subdag task, different DAGs, etc.)**
 
--   **xcom讓task之間交換訊息, cross-communication的簡寫**
+-   **xcom讓task之間資訊交換, cross-communication的簡寫**
 
--   **task之間交換資訊**
+-   **task之間資訊交換**
 
         value = context['task_instance'].xcom_pull(task_ids='task1')
 
--   **subdag task之間交換資訊**
+-   **subdag task之間資訊交換**
 
         value = context['task_instance'].xcom_pull(dag_id='sub_dag.xcom_subdag', task_ids='task1')
 
--   **DAG之間交換資訊**<br>
+-   **DAG之間資訊交換**<br>
 
     [Read&Write Xcom in different DAG]<br> 
     https://medium.com/analytics-vidhya/airflow-xcom-pull-and-push-under-the-hood-multiple-value-from-different-dags-and-etc-2b9b3a942299
@@ -175,7 +175,7 @@ https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 
 
 
->   **利用xcom_pull實作類似sensor效果**<br>
+>   **利用xcom_pull做出sensor效果**<br>
     -**DAG_B需要等DAG_A完成後才可以執行**
 
 **A (DAG)**<br>
@@ -239,9 +239,9 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
     )
 
     check >> task1 >> task3
+    
 
-
-## airflow unittest
+## unittest
 -  **模擬airflow scheduler執行DAG**
 [https://github.com/chuhaoyuu/airflow/blob/master/tests/test_airflow.py]
 >   測試其中兩個task
