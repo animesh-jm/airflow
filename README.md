@@ -242,9 +242,9 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
 
 ## airflow unittest
--  **IDE模擬airflow scheduler執行DAG**
+-  **模擬airflow scheduler執行DAG**
 
->   測試DAG其中兩個task
+>   測試其中兩個task
 
 ![](images/unittest.png)
 

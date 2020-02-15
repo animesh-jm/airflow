@@ -34,6 +34,7 @@ class TestAirflowDAGTask:
     
     def xcom_value(self,**context):
         self.value = context['task_instance'].xcom_pull(task_ids='test_operator')
+        print(self.value)
         return self.value
 
     
@@ -68,5 +69,5 @@ class TestAirflowDAGTask:
 
         assert str(self.value) == '50'
 
-# test = TestOperator()
+# test = TestAirflowDAGTask()
 # test.test_Operator(test.dag)
