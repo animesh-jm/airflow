@@ -82,7 +82,31 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
 
 
 ## 共用參數
+[airflow加入相關參數]<br> 
+https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 
+-   連線
+>   .postgresql.ini<br>
+    
+        [postgres_dwh]
+        host=localhost
+        port=5432
+        dbname=dwh
+        user=`user`
+        password=`password`
+
+        [postgres_orders]
+        host=localhost
+        port=5432
+        dbname=orders
+        user=`user`
+        password=`password`
+
+![](images/connections.png)
+
+-   參數(PATH, etc.)
+
+![](images/variables.png)
 
 ## 動態 DAG、Task
 >   **前端有10個table要備份資料至倉儲，某天需求多增加100個table**<br>
@@ -94,7 +118,7 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
 
         tables = ['a','b','c','d','e','f','g']
 
-        def dynamicTask(table, **kwargs):
+        def dynamicTask(table, **context):
             return DummyOperator(task_id="{0}".format(table),dag=dag)
         
         for table in tables:
@@ -104,27 +128,51 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
     ![](images/dynamicTask.png)
 
 -   **動態DAG**<br>
-[Dynamically Generating DAGs in Airflow] https://www.astronomer.io/guides/dynamically-generating-dags/
+[Dynamically Generating DAGs in Airflow]<br> https://www.astronomer.io/guides/dynamically-generating-dags/
 
 ## xcom_push、xcom_pull
->   **DAG task之間value交換(subdag task、different DAGs and etc)**
+>   **DAG task之間value交換(subdag task, different DAGs, etc.)**
 
 -   **xcom讓task之間交換訊息, cross-communication的簡寫**
 
--   **task之間value交換**
+-   **task之間交換資訊**
 
         value = context['task_instance'].xcom_pull(task_ids='task1')
 
--   **subdag task之間value交換**
+-   **subdag task之間交換資訊**
 
         value = context['task_instance'].xcom_pull(dag_id='sub_dag.xcom_subdag', task_ids='task1')
 
--   <font color=red size=4>任何執行過(含本身)</font> **DAG之間value的交換**
+[Read&Write Xcom in different DAG]<br> 
+https://medium.com/analytics-vidhya/airflow-xcom-pull-and-push-under-the-hood-multiple-value-from-different-dags-and-etc-2b9b3a942299
 
-        get_xcom_class = XCom.get_many(
-            execution_date=make_aware(datetime(2020, 2, 14)),
+-   **DAG之間交換資訊**
+
+        from airflow.models import XCom
+        
+        get_xcom = XCom.get_many(
+            execution_date=make_aware(datetime(2020, 2, 13, 8, 00, 00)),
             dag_ids=["write_to_xcom"], 
-            include_prior_dates=True)
+            include_prior_dates=True
+            )
+
+        value = context['task_instance'].xcom_pull(dag_id="write_to_xcom", key='test_dag_2', include_prior_dates=True)
+        
+        print(get_xcom)
+        print(value)
+
+        #   dag_ids : 不同(含本身)DAG的資訊
+        #   include_prior_dates = True : Airflow找出小於execution date的所有相關紀錄,
+            如task instance有多筆紀錄且key一樣則會抓到最後一筆記錄
+
+>   [<XCom "test_dag_3" (xcom_push_task @ 2020-02-13 06:45:20.531321+00:00)><br>,<XCom "test_dag_2" (xcom_push_task @ 2020-02-13 06:44:48.776438+00:00)><br>,<XCom "test_dag_1" (xcom_push_task @ 2020-02-13 06:44:19.436805+00:00)><br>,<XCom "test_dag_3" (xcom_push_task @ 2020-02-13 00:00:00+00:00)>]<br>
+    {'key123': 'value345'}
+
+
+![](images/xcom.png)<br>
+
+
+
 
 
 >   **利用xcom_pull實作類似sensor效果**<br>
@@ -141,8 +189,10 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
 
 ## DAG模組化 ??
->   **共用DAG**<br>
+>   **利用SubDAG共用DAG**<br>
     -**任何DAG啟動前都必須檢查各式各樣的前置作業是否完成，將繁瑣前置作業包成DAG讓其它DAG import使用**
+
+![](images/precheck.png)
 
 **precheck**
 
@@ -190,9 +240,11 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
     check >> task1 >> task3
 
-![](images/precheck.png)
-
 
 ## airflow unittest
--  **IDE中模擬airflow scheduler執行DAG**
+-  **IDE模擬airflow scheduler執行DAG**
+
+>   測試DAG其中兩個task
+
+![](images/unittest.png)
 

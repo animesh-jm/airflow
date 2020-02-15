@@ -43,7 +43,7 @@ def initialize_example():
         parser.read(filename)
         # get section, default to postgresql
         db_config = {}
-        logging.info('Creating connections, pool and sql path')
+        logging.info('Creating connections and sql path')
 
         for section in parser.sections():
             conn_id = section
