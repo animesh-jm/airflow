@@ -1,16 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# https://gtoonstra.github.io/etl-with-airflow/etlexample.html
 
 from __future__ import print_function
 import os 
@@ -30,7 +19,7 @@ args = {
 }
 
 
-def initialize_etl_example():
+def initialize_example():
     logging.info('Reading config')
     session = Session()
 
@@ -88,13 +77,6 @@ def initialize_etl_example():
     session.add(new_var)
     session.commit()
 
-    new_pool = models.Pool()
-    new_pool.pool = "postgres_dwh"
-    new_pool.slots = 10
-    new_pool.description = "Allows max. 10 connections to the DWH"
-    session.add(new_pool)
-    session.commit()
-
     session.close()
 
 dag = airflow.DAG(
@@ -103,7 +85,7 @@ dag = airflow.DAG(
     default_args=args,
     max_active_runs=1)
 
-t1 = PythonOperator(task_id='initialize_etl_example',
-                    python_callable=initialize_etl_example,
+t1 = PythonOperator(task_id='initialize_example',
+                    python_callable=initialize_example,
                     provide_context=False,
                     dag=dag)

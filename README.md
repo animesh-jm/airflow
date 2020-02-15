@@ -89,8 +89,8 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
     ~~新增100個DAG或100個task~~
 
 -   **動態task**<br>
-[Creating a dynamic DAG using Apache Airflow]:<br> https://towardsdatascience.com/creating-a-dynamic-dag-using-apache-airflow-a7a6f3c434f3 <br>
-[CREATE DYNAMIC WORKFLOW IN APACHE AIRFLOW]:<br> https://www.data-essential.com/create-dynamic-workflow-in-apache-airflow/
+[Creating a dynamic DAG using Apache Airflow]<br> https://towardsdatascience.com/creating-a-dynamic-dag-using-apache-airflow-a7a6f3c434f3 <br>
+[CREATE DYNAMIC WORKFLOW IN APACHE AIRFLOW]<br> https://www.data-essential.com/create-dynamic-workflow-in-apache-airflow/
 
         tables = ['a','b','c','d','e','f','g']
 
@@ -104,7 +104,7 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
     ![](images/dynamicTask.png)
 
 -   **動態DAG**<br>
-[Dynamically Generating DAGs in Airflow]: https://www.astronomer.io/guides/dynamically-generating-dags/
+[Dynamically Generating DAGs in Airflow] https://www.astronomer.io/guides/dynamically-generating-dags/
 
 ## xcom_push、xcom_pull
 >   **DAG task之間value交換(subdag task、different DAGs and etc)**
@@ -127,8 +127,6 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
             include_prior_dates=True)
 
 
-
-
 >   **利用xcom_pull實作類似sensor效果**<br>
     -**DAG_B需要等DAG_A完成後才可以執行**
 
@@ -143,7 +141,7 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
 
 ## DAG模組化 ??
->   ***共用DAG***<br>
+>   **共用DAG**<br>
     -**任何DAG啟動前都必須檢查各式各樣的前置作業是否完成，將繁瑣前置作業包成DAG讓其它DAG import使用**
 
 **precheck**
@@ -197,4 +195,4 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
 ## airflow unittest
 -  **IDE中模擬airflow scheduler執行DAG**
--  **單元測試**
+
