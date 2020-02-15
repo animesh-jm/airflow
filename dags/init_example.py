@@ -60,15 +60,6 @@ def initialize_example():
                      "login": db_config['user'],
                      "password": db_config['password']})
 
-    # create_new_conn(session,
-    #                 {"conn_id": "postgres_dwh",
-    #                  "conn_type": "postgres",
-    #                  "host": "localhost",
-    #                  "port": 5432,
-    #                  "schema": "dwh",
-    #                  "login": "jackychu",
-    #                  "password": "!A(2813236)#$"})
-
     config()
 
     new_var = models.Variable()
