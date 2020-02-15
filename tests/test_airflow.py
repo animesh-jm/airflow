@@ -45,7 +45,7 @@ class TestAirflowDAGTask:
             conn_id = 'postgres_dwh',
             sql = 'select * from staging.audit_runs limit 1;',
             poke_interval=3,
-            timeout=5,
+            timeout=10,
             dag=test_dag
         )
 
