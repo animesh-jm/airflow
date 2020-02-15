@@ -69,5 +69,5 @@ class TestAirflowDAGTask:
 
         assert str(self.value) == '50'
 
-# test = TestAirflowDAGTask()
-# test.test_Operator(test.dag)
+test = TestAirflowDAGTask()
+test.test_Operator(test.dag)
