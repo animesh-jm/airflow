@@ -143,10 +143,10 @@ https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 
         value = context['task_instance'].xcom_pull(dag_id='sub_dag.xcom_subdag', task_ids='task1')
 
-[Read&Write Xcom in different DAG]<br> 
-https://medium.com/analytics-vidhya/airflow-xcom-pull-and-push-under-the-hood-multiple-value-from-different-dags-and-etc-2b9b3a942299
+-   **DAG之間交換資訊**<br>
 
--   **DAG之間交換資訊**
+    [Read&Write Xcom in different DAG]<br> 
+    https://medium.com/analytics-vidhya/airflow-xcom-pull-and-push-under-the-hood-multiple-value-from-different-dags-and-etc-2b9b3a942299
 
         from airflow.models import XCom
         
