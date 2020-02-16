@@ -1,6 +1,6 @@
 # Airflow
 
-Airflow是一個開源工作流管理平台(schedule workflow)，相較於其它ETL tools(e.g. Nifi, datastage, informatica, SSIS)，airflow並不負責處理資料(data flow)，airflow利用DAG來代表工作流程(workflow)，提供Web UI顯示有什麼工作、執行時間週期、工作之間的執行順序以及依賴關係。
+Airflow是一個開源工作流管理平台(schedule workflow)，airflow利用DAG來代表工作流程(workflow)，提供Web UI顯示有什麼工作、執行時間週期、工作之間的執行順序以及依賴關係。
 
 
 ## Quick start
@@ -62,26 +62,7 @@ DAG 最終目標將所有工作在對的時間依照上下游關係全部執行�
 
 ![](images/Unable.png)
 
-## Task
-
-
-
-## Operator
-
-
-
-## Hook
-
-
-
-## Sensor
-
-
-
-## plugins
-
-
-## 共用參數
+## 參數
 [airflow加入相關參數]<br> 
 https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 
@@ -188,7 +169,7 @@ https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
 
-## DAG模組化 ??
+## DAG模組化
 >   **利用SubDAG共用DAG**<br>
     -**任何DAG啟動前都必須檢查各式各樣的前置作業是否完成，將繁瑣前置作業包成DAG讓其它DAG import使用**
 
