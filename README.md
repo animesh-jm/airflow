@@ -153,9 +153,6 @@ https://github.com/chuhaoyuu/airflow/blob/master/dags/init_example.py
 ![](images/xcom.png)<br>
 
 
-
-
-
 >   **利用xcom_pull做出sensor效果**<br>
     -**DAG_B需要等DAG_A完成後才可以執行**
 
@@ -235,4 +232,6 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 >   測試其中兩個task
 
 ![](images/unittest.png)
+
+>   **小心Xcom改變參數值**
 
