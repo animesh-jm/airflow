@@ -223,7 +223,14 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
     
 
 ## unittest
--  **模擬airflow scheduler執行DAG**
+-   **Debug Executor**<br>
+[http://airflow.apache.org/docs/stable/executor/debug.html]
+        
+        if __name__ == '__main__':
+            dag.clear(reset_dag_runs=True)
+            dag.run()
+
+-  **Example**<br>
 [https://github.com/chuhaoyuu/airflow/blob/master/tests/test_airflow.py]
 >   測試其中兩個task
 
