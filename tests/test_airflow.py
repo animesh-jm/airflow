@@ -18,6 +18,7 @@ class TestAirflowDAGTask:
 
     value = None
 
+    # IDE Debug
     dag = airflow.DAG(
         "testdag",
         default_args={"owner": "airflow", "start_date": airflow.utils.dates.days_ago(0), 'provide_context': True},
@@ -25,12 +26,9 @@ class TestAirflowDAGTask:
     )   
 
     # run task
-    def run_task(self,task, dag):
+    def run_task(self, task, dag):
         dag.clear()
-        task.run(
-            start_date=dag.default_args["start_date"],
-            end_date=dag.default_args["start_date"],
-        )
+        task.run()
     
     def xcom_value(self,**context):
         self.value = context['task_instance'].xcom_pull(task_ids='test_operator')
