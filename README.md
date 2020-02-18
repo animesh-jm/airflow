@@ -233,5 +233,3 @@ https://airflow.apache.org/docs/stable/concepts.html?#subdags
 
 ![](images/unittest.png)
 
->   **小心Xcom改變參數值**
-
