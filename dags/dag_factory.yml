@@ -1,0 +1,40 @@
+factory_dag:
+  default_args:
+    owner: "factory"
+    start_date: 2020-03-16
+    provide_context: True
+    retries: 1
+    retry_delay_sec: 30
+  schedule_interval: "@daily"
+  tasks:
+    task_factory1:
+      operator: airflow.operators.AuditOperator
+      postgres_conn_id: postgres_dwh
+      audit_key: "customer"
+      cycle_dtm: "{{ ts }}"
+      # dependencies: [task_factory]
+    
+    generate_dwh_table_list:
+      operator: airflow.operators.ListTable
+      # dag_confing: dag
+      sql : "SELECT table_name FROM information_schema.tables WHERE table_schema = 'staging' ORDER BY table_name;"
+      postgres_conn_id : postgres_dwh
+      group_name : "dwh"
+      dependencies: [task_factory1]
+
+    do_something:
+      operator: airflow.operators.bash_operator.BashOperator
+      bash_command: 'echo 3'
+      dependencies: [done_dwh]
+
+    task3:
+      operator: airflow.operators.bash_operator.BashOperator
+      bash_command: 'echo 3'
+      dependencies: [done_dwh]
+
+    generate_order_table_list:
+      operator: airflow.operators.ListTable
+      sql : "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name;"
+      postgres_conn_id : postgres_order
+      group_name : "order"
+      dependencies: [task3,do_something]
